@@ -597,7 +597,7 @@ class TataUsaha extends CI_Controller
         }
     }
 
-    public function update_data_siswa($id)
+    public function update_data_siswa($nisn)
     {
         // get data from input field
         $data = [
@@ -617,19 +617,19 @@ class TataUsaha extends CI_Controller
             'kecamatan' => $this->input->post('kecamatan'),
             'kode_pos' => $this->input->post('kode_pos'),
             'jenis_tinggal' => $this->input->post('jenis_tinggal'),
-            'transportasi' => $this->input->post('$transportasi'),
+            'transportasi' => $this->input->post('transportasi'),
             'telepon' => $this->input->post('telepon'),
             'hp' => $this->input->post('hp'),
             'email' => $this->input->post('email'),
             'skhun' => $this->input->post('skhun'),
             'penerima_kps' => $this->input->post('penerima_kps'),
-            'no_kps' => $this->input->post('no_kps'),
+            'no_kps' => $this->input->post('nomor_kps'),
             'nama_ayah' => $this->input->post('nama_ayah'),
             'tahun_lahir_ayah' => $this->input->post('tahun_lahir_ayah'),
             'pendidikan_ayah' => $this->input->post('pendidikan_ayah'),
             'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
             'penghasilan_ayah' => $this->input->post('penghasilan_ayah'),
-            'nik_ayah' => $this->input->post('nik_ibu'),
+            'nik_ayah' => $this->input->post('nik_ayah'),
             'nama_ibu' => $this->input->post('nama_ibu'),
             'tahun_lahir_ibu' => $this->input->post('tahun_lahir_ibu'),
             'pendidikan_ibu' => $this->input->post('pendidikan_ibu'),
@@ -654,7 +654,7 @@ class TataUsaha extends CI_Controller
             'no_rek_bank' => $this->input->post('no_rek_bank'),
             'rek_atas_nama' => $this->input->post('rek_atas_nama'),
             'layak_pip' => $this->input->post('layak_pip'),
-            'alasan_layak_pip' => $this->input->post('alasan_pip'),
+            'alasan_layak_pip' => $this->input->post('alasan_layak_pip'),
             'kebutuhan_khusus' => $this->input->post('kebutuhan_khusus'),
             'sekolah_asal' => $this->input->post('sekolah_asal'),
             'anak_ke_berapa' => $this->input->post('anak_ke'),
@@ -667,7 +667,7 @@ class TataUsaha extends CI_Controller
             'jumlah_saudara' => $this->input->post('jumlah_saudara'),
             'jarak_rumah' => $this->input->post('jarak_rumah')
         ];
-        $result = $this->db->update('tb_data_guru', $data, ['id' => $id]);
+        $result = $this->db->update('tb_data_siswa', $data, ['nisn' => $nisn]);
         if ($result) {
             $this->session->set_flashdata(
                 'massage',
@@ -678,7 +678,7 @@ class TataUsaha extends CI_Controller
                     </button>
                 </div>'
             );
-            redirect('tatausaha/data_guru');
+            redirect('tatausaha/data_siswa_kelas_x');
         } else {
             $this->session->set_flashdata(
                 'massage',
@@ -689,14 +689,14 @@ class TataUsaha extends CI_Controller
                     </button>
                 </div>'
             );
-            redirect('tatausaha/data_guru');
+            redirect('tatausaha/data_siswa_kelas_x');
         }
     }
 
     public function delete_data_siswa()
     {
         // Delet data from id user
-        $this->db->delete('tb_data_siswa', ['id']);
+        $this->db->delete('tb_data_siswa', ['nisn']);
         $this->session->set_flashdata(
             'massage',
             '<div class="alert alert-danger alert-dismissable fade show" role="alert">

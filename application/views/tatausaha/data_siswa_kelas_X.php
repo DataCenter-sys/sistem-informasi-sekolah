@@ -496,13 +496,13 @@
                     </div>
                 </div>
 
-                <!-- modal View -->
+                <!-- modal Edit -->
                 <div class="modal fade" id="editModal<?= $gd['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="" method="post">
+                            <form action="<?= site_url('tatausaha/update_data_siswa/' . $gd['nisn']); ?>" method="post">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-primary" id="registrasiModalLabel">View Akun</h5>
+                                    <h5 class="modal-title text-primary" id="registrasiModalLabel">Edit Data</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -553,7 +553,7 @@
                                     <div class="form-group row">
                                         <label for="Agama" class="col-sm-4 col-form-label">Agama</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="Agama" name="Agama" value="<?= $gd['agama']; ?>">
+                                            <input type="text" class="form-control" id="Agama" name="agama" value="<?= $gd['agama']; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -709,7 +709,7 @@
                                     <div class="form-group row">
                                         <label for="penghasilan_ibu" class="col-sm-4 col-form-label">Penghasilan Ibu</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="penghasilan_ibu" name="penghasilan_ayah" value="<?= $gd['penghasilan_ibu']; ?>">
+                                            <input type="text" class="form-control" id="penghasilan_ibu" name="penghasilan_ibu" value="<?= $gd['penghasilan_ibu']; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -821,6 +821,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="rek_atas_nama" class="col-sm-4 col-form-label">Nama Rekening</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="rek_atas_nama" name="rek_atas_nama" value="<?= $gd['rek_atas_nama']; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="layak_pip" class="col-sm-4 col-form-label">Layak PIP</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" id="layak_pip" name="layak_pip" value="<?= $gd['layak_pip']; ?>">
@@ -845,9 +851,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="anak_ke_berapa" class="col-sm-4 col-form-label">Anak Ke</label>
+                                        <label for="anak_ke" class="col-sm-4 col-form-label">Anak Ke</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="anak_ke_berapa" name="anak_ke_berapa" value="<?= $gd['anak_ke_berapa']; ?>">
+                                            <input type="text" class="form-control" id="anak_ke" name="anak_ke" value="<?= $gd['anak_ke_berapa']; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -898,6 +904,9 @@
                                             <input type="text" class="form-control" id="jarak_rumah" name="jarak_rumah" value="<?= $gd['jarak_rumah']; ?>">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
                                 </div>
                             </form>
                         </div>
