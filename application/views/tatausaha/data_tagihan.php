@@ -4,7 +4,10 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="col-sm-12">
-                <h1 class="m-0">Data Tagihan Siswa</h1>
+                <h1 class="m-0">Data Tagihan</h1>
+                <div class="mt-1 mb-1">
+                    <?= $this->session->flashdata('massage'); ?>
+                </div>
             </div>
         </div>
     </div>
@@ -25,45 +28,56 @@
                                 <thead lass="bg-primary">
                                     <tr>
                                         <th>No</th>
-                                        <th>Name</th>
-                                        <th>NIS</th>
+                                        <th>ID Tagihan</th>
+                                        <th>Kelas</th>
                                         <th>DU</th>
                                         <th>SPP</th>
                                         <th>Buku</th>
                                         <th>PTS</th>
                                         <th>PAS</th>
+                                        <th>Kegiatan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>xxxxxxxxxxxxxxxxx</td>
-                                        <td>xxxxxxxxxxxxxxxxx</td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#duModal">
-                                                999999999
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#sppModal">
-                                                999999999
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#bukuModal">
-                                                999999999
-                                            </a>
-                                        </td>
-                                        <td><a href="#" data-toggle="modal" data-target="#ptsModal">
-                                                999999999
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#pasModal">
-                                                999999999
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    foreach ($get_data as $gd) { ?>
+                                        <tr>
+                                            <td><?= $gd['id_tagihan'] ?></td>
+                                            <td><?= $gd['no_tagihan'] ?></td>
+                                            <td><?= $gd['kelas'] ?></td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#duModal">
+                                                    <?= $gd['tgh_du'] ?>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#sppModal">
+                                                    <?= $gd['tgh_spp'] ?>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#bukuModal">
+                                                    <?= $gd['tgh_buku'] ?>
+                                                </a>
+                                            </td>
+                                            <td><a href="#" data-toggle="modal" data-target="#ptsModal">
+                                                    <?= $gd['tgh_pts'] ?>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#pasModal">
+                                                    <?= $gd['tgh_pas'] ?>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#kegiatanModal">
+                                                    <?= $gd['tgh_kegiatan'] ?>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                    ?>
+
                                 </tbody>
 
                             </table>
@@ -343,7 +357,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title text-primary" id="inputModalLabel">Buat Tagihan Baru</h5>
                         </div>
-                        <form action="/register/save" method="post">
+                        <form action="<?= base_url('tatausaha/input_tagihan_smk') ?>" method="post">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -353,14 +367,14 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group">
-                                            <select class="form-control" name="" id="" aria-placeholder="Set Active">
+                                            <select class="form-control" name="kelas" id="" aria-placeholder="Set Active" required>
                                                 <option value="">Pilih kelas</option>
-                                                <option value="99999999">X AKL/OTKP</option>
-                                                <option value="99999999">X MM/DKV/TKJ/RPL/PSPT</option>
-                                                <option value="99999999">XI AKL/OTKP</option>
-                                                <option value="99999999">XI MM/DKV/TKJ/RPL/PSPT</option>
-                                                <option value="99999999">XII AKL/OTKP</option>
-                                                <option value="99999999">XII MM/DKV/TKJ/RPL/PSPT</option>
+                                                <option value="X AKL/OTKP">X AKL/OTKP</option>
+                                                <option value="X MM/DKV/TKJ/RPL/PSPT">X MM/DKV/TKJ/RPL/PSPT</option>
+                                                <option value="XI AKL/OTKP">XI AKL/OTKP</option>
+                                                <option value="XI MM/DKV/TKJ/RPL/PSPT">XI MM/DKV/TKJ/RPL/PSPT</option>
+                                                <option value="XII AKL/OTKP">XII AKL/OTKP</option>
+                                                <option value="XII MM/DKV/TKJ/RPL/PSPT">XII MM/DKV/TKJ/RPL/PSPT</option>
                                             </select>
                                         </div>
                                     </div>
@@ -374,7 +388,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group mb-2">
-                                            <input type="text" class="form-control" name="" id="inputSPP" placeholder="...">
+                                            <input type="text" class="form-control" name="du" id="inputSPP" placeholder="..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -387,7 +401,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group mb-2">
-                                            <input type="text" class="form-control" name="" id="inputSPP" placeholder="...">
+                                            <input type="text" class="form-control" name="spp" id="inputSPP" placeholder="..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -400,7 +414,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group mb-2">
-                                            <input type="text" class="form-control" name="" id="inputBUKU" placeholder="...">
+                                            <input type="text" class="form-control" name="buku" id="inputBUKU" placeholder="..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -413,7 +427,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group mb-2">
-                                            <input type="text" class="form-control" name="" id="inputPTS" placeholder="...">
+                                            <input type="text" class="form-control" name="pts" id="inputPTS" placeholder="..." required>
                                         </div>
                                     </div>
                                 </div>
@@ -426,7 +440,20 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="input-group mb-2">
-                                            <input type="text" class="form-control" name="" id="inputPAS" placeholder="...">
+                                            <input type="text" class="form-control" name="pas" id="inputPAS" placeholder="..." required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Kegiatan</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" name="kegiatan" id="inputKegiatan" placeholder="..." required>
                                         </div>
                                     </div>
                                 </div>

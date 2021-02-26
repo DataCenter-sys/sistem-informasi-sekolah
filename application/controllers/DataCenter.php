@@ -16,6 +16,7 @@ class DataCenter extends CI_Controller
     {
         parent::__construct();
         $username = $this->session->userdata('username');
+        $this->load->model('User_Model', 'user_model');
         if (empty($username)) {
             redirect('auth');
         }
@@ -34,6 +35,7 @@ class DataCenter extends CI_Controller
     {
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 9])->row_array();
         $data['username'] = $this->session->userdata('username');
+        $data['c'] = $this->user_model->counting();
         $this->load->view('template/template_header', $data);
         $this->load->view('main', $data);
         $this->load->view('template/template_footer');

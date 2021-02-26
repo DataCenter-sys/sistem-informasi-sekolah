@@ -25,4 +25,31 @@ class User_Model extends CI_Model
         $result = $this->db->update('users', $data);
         return $result;
     }
+
+    function counting_active()
+    {
+        $this->db->select('id_user, COUNT(name) as total');
+        $this->db->group_by('name');
+        $this->db->order_by('total', 'desc');
+        $result = $this->db->get('tb_user')->result_array();
+        return $result;
+    }
+
+    function counting_not_active()
+    {
+        $this->db->select('id_user, COUNT(name) as total');
+        $this->db->group_by('name');
+        $this->db->order_by('total', 'desc');
+        $result = $this->db->get('tb_user')->result_array();
+        return $result;
+    }
+
+    function counting()
+    {
+        $this->db->select('id_user, COUNT(name) as total');
+        $this->db->group_by('name');
+        $this->db->order_by('total', 'desc');
+        $result = $this->db->get('tb_user')->result_array();
+        return $result;
+    }
 }

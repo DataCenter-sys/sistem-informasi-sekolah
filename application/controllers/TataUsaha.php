@@ -21,6 +21,18 @@ class TataUsaha extends CI_Controller
         // Code Here
     }
 
+    public function random($length)
+    {
+        $string = '';
+        $character = array_merge(range('0', '9'));
+        $max = count($character) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $random = mt_rand(0, $max);
+            $string .= $character[$random];
+        }
+        return $string;
+    }
+
     /*
     |
     | 
@@ -105,11 +117,47 @@ class TataUsaha extends CI_Controller
 
     public function input_tagihan_smk()
     {
-        // Code Here
+        // Code Here  
+        function random($length)
+        {
+            $string = '';
+            $character = array_merge(range('0', '9'));
+            $max = count($character) - 1;
+            for ($i = 0; $i < $length; $i++) {
+                $random = mt_rand(0, $max);
+                $string .= $character[$random];
+            }
+            return $string;
+        }
+
+        $no = random(10);
+        $data = [
+            'no_tagihan' => $no,
+            'kelas' => htmlspecialchars($this->input->post('kelas')),
+            'tgh_spp' => htmlspecialchars($this->input->post('spp')),
+            'tgh_du' => htmlspecialchars($this->input->post('du')),
+            'tgh_pts' => htmlspecialchars($this->input->post('pts')),
+            'tgh_pas' => htmlspecialchars($this->input->post('pas')),
+            'tgh_buku' => htmlspecialchars($this->input->post('buku')),
+            'tgh_kegiatan' => htmlspecialchars($this->input->post('kegiatan'))
+        ];
+
+        $this->db->insert('tb_tagihan', $data);
+        $this->session->set_flashdata(
+            'massage',
+            '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                Sukses membuat tagihan
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>'
+        );
+        redirect('tatausaha/data_tagihan_smk');
     }
 
     public function data_tagihan_smk()
     {
+        $data['get_data'] = $this->db->get('tb_tagihan')->result_array();
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
         $data['username'] = $this->session->userdata('username');
         $this->load->view('template/template_header', $data);

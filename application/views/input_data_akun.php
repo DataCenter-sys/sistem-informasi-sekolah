@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <h1 class="m-0">Input Data</h1>
                 <div class="mt-1 mb-1">
                     <?= $this->session->flashdata('massage'); ?>
