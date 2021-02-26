@@ -58,7 +58,7 @@
                                 <i class="fas fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="text" name="username" id="Username" placeholder="Username">
+                        <input class="form-control border-left-0 border-md" type="text" name="username" id="Username" placeholder="Username" required>
                     </div>
                     <div class="input-group mb-4">
                         <div class="input-group-prepend">
@@ -66,7 +66,7 @@
                                 <i class="fas fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="password" name="password" id="Password" placeholder="Password">
+                        <input class="form-control border-left-0 border-md" type="password" name="password" id="Password" placeholder="Password" required>
                     </div>
                     <button class="btn btn-md btn-outline-primary" type="submit">Login Now</button>
                 </form>

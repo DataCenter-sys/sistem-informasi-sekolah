@@ -58,7 +58,7 @@
                                 <i class="fas fa-signature text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="text" name="name" id="Name" placeholder="Your Name">
+                        <input class="form-control border-left-0 border-md" type="text" name="name" id="Name" placeholder="Your Name" required>
                     </div>
                     <?= form_error('name', '<small class="text-danger">', '</small>'); ?>
                     <div class=" input-group mb-2">
@@ -67,7 +67,7 @@
                                 <i class="fas fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="text" name="email" id="Email" placeholder="your email">
+                        <input class="form-control border-left-0 border-md" type="text" name="email" id="Email" placeholder="your email" required>
                     </div>
                     <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     <div class=" input-group mb-2">
@@ -76,7 +76,7 @@
                                 <i class="fas fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="text" name="username" id="Username" placeholder="your Username">
+                        <input class="form-control border-left-0 border-md" type="text" name="username" id="Username" placeholder="your Username" required>
                     </div>
                     <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                     <div class="input-group mb-2">
@@ -85,7 +85,7 @@
                                 <i class="fas fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="password" name="password" id="Password" placeholder="Your password">
+                        <input class="form-control border-left-0 border-md" type="password" name="password" id="Password" placeholder="Your password" required>
                     </div>
                     <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                     <div class="input-group mb-2">
@@ -94,7 +94,7 @@
                                 <i class="fas fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input class="form-control border-left-0 border-md" type="password" name="password2" id="Konfirmasi Password" placeholder="Repeat password">
+                        <input class="form-control border-left-0 border-md" type="password" name="password2" id="Konfirmasi Password" placeholder="Repeat password" required>
                     </div>
                     <?= form_error('password2', '<small class="text-danger">', '</small>'); ?>
                     <div class="input-group mb-2">
@@ -103,7 +103,7 @@
                                 <i class="fas fa-list text-muted"></i>
                             </span>
                         </div>
-                        <select class="form-control border-left-0 border-md" name="role_id" id="Role">
+                        <select class="form-control border-left-0 border-md" name="role_id" id="Role" required>
                             <option value="">Pilih Unit</option>
                             <option value="9">Data Center</option>
                             <option value="1">Tata Usaha SMP</option>
