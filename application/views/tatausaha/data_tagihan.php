@@ -40,38 +40,39 @@
                                 </thead>
                                 <tbody>
                                     <?php
+
                                     foreach ($get_data as $gd) { ?>
                                         <tr>
-                                            <td><?= $gd['id_tagihan'] ?></td>
-                                            <td><?= $gd['no_tagihan'] ?></td>
-                                            <td><?= $gd['kelas'] ?></td>
+                                            <td><?= $gd['nomor']; ?></td>
+                                            <td><?= $gd['nomor_tagihan'] ?></td>
+                                            <td><?= $gd['nama_kelas'] ?></td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#duModal">
-                                                    <?= $gd['tgh_du'] ?>
+                                                    <?= $gd['daftar_ulang'] ?>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#sppModal">
-                                                    <?= $gd['tgh_spp'] ?>
+                                                    <?= $gd['total_spp'] ?>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#bukuModal">
-                                                    <?= $gd['tgh_buku'] ?>
+                                                    <?= $gd['buku'] ?>
                                                 </a>
                                             </td>
                                             <td><a href="#" data-toggle="modal" data-target="#ptsModal">
-                                                    <?= $gd['tgh_pts'] ?>
+                                                    <?= $gd['pts'] ?>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#pasModal">
-                                                    <?= $gd['tgh_pas'] ?>
+                                                    <?= $gd['pas'] ?>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#kegiatanModal">
-                                                    <?= $gd['tgh_kegiatan'] ?>
+                                                    <?= $gd['kegiatan'] ?>
                                                 </a>
                                             </td>
                                         </tr>

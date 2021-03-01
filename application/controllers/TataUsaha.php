@@ -10,6 +10,7 @@ class TataUsaha extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Data', 'data');
+        $this->load->model('User_Model', 'ud');
         $username = $this->session->userdata('username');
         if (empty($username)) {
             redirect('auth');
@@ -131,10 +132,25 @@ class TataUsaha extends CI_Controller
         }
 
         $no = random(10);
+        $spp = htmlspecialchars($this->input->post('spp'));
+        if ($spp) {
+            $hasil = $spp / 12;
+        }
         $data = [
             'no_tagihan' => $no,
             'kelas' => htmlspecialchars($this->input->post('kelas')),
-            'tgh_spp' => htmlspecialchars($this->input->post('spp')),
+            'tgh_spp_1' => $hasil,
+            'tgh_spp_2' => $hasil,
+            'tgh_spp_3' => $hasil,
+            'tgh_spp_4' => $hasil,
+            'tgh_spp_5' => $hasil,
+            'tgh_spp_6' => $hasil,
+            'tgh_spp_7' => $hasil,
+            'tgh_spp_8' => $hasil,
+            'tgh_spp_9' => $hasil,
+            'tgh_spp_10' => $hasil,
+            'tgh_spp_11' => $hasil,
+            'tgh_spp_12' => $hasil,
             'tgh_du' => htmlspecialchars($this->input->post('du')),
             'tgh_pts' => htmlspecialchars($this->input->post('pts')),
             'tgh_pas' => htmlspecialchars($this->input->post('pas')),
@@ -157,11 +173,22 @@ class TataUsaha extends CI_Controller
 
     public function data_tagihan_smk()
     {
-        $data['get_data'] = $this->db->get('tb_tagihan')->result_array();
+
+        $data['get_data'] = $this->ud->tagihan();
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
         $data['username'] = $this->session->userdata('username');
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_tagihan', $data);
+        $this->load->view('template/template_footer');
+    }
+
+    public function data_pembayaran_smk()
+    {
+        // $data['get_data'] = $this->ud->join_tagihan();
+        $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('template/template_header', $data);
+        $this->load->view('tatausaha/data_pembayaran', $data);
         $this->load->view('template/template_footer');
     }
 

@@ -198,6 +198,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="<?= site_url('tatausaha/data_pembayaran_smk') ?>" class="nav-link">
+                                            <i class="fas fa-circle nav-icon"></i>
+                                            <p>Input Pembayaran</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="fas fa-circle nav-icon"></i>
                                             <p>Data Tunggakan Siswa</p>

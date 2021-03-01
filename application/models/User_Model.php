@@ -52,4 +52,13 @@ class User_Model extends CI_Model
         $result = $this->db->get('tb_user')->result_array();
         return $result;
     }
+
+    public function tagihan()
+    {
+        $this->db->select('id_tagihan AS nomor, no_tagihan AS nomor_tagihan, kelas AS nama_kelas, tgh_du AS daftar_ulang, tgh_buku AS buku, tgh_pts AS pts, tgh_pas AS pas, tgh_kegiatan AS kegiatan, sum(tgh_spp_1) + sum(tgh_spp_2) + sum(tgh_spp_3) + sum(tgh_spp_4) + sum(tgh_spp_5) + sum(tgh_spp_6) + sum(tgh_spp_7) + sum(tgh_spp_8) + sum(tgh_spp_9) + sum(tgh_spp_10) + sum(tgh_spp_11) + sum(tgh_spp_12) AS total_spp');
+        $this->db->group_by('id_tagihan');
+        $this->db->order_by('total_spp');
+        $result = $this->db->get('tb_tagihan')->result_array();
+        return $result;
+    }
 }
