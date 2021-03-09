@@ -131,42 +131,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- Menu Dropdown -->
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-edit"></i>
+                                    <i class="nav-icon fas fa-edit "></i>
                                     <p>
                                         Input Data
-                                        <i class="right fas fa-angle-left"></i>
+                                        <i class="right fas fa-angle-left fa-xs"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
+                                <ul class="nav nav-treeview ml-4">
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="fas fa-circle nav-icon"></i>
                                             <p>Data Siswa</p>
                                             <i class="right fas fa-angle-left"></i>
                                         </a>
-                                        <ul class="nav nav-treeview">
+                                        <ul class="nav nav-treeview ml-4">
                                             <li class="nav-item">
                                                 <a href="<?= site_url('tatausaha/data_siswa_kelas_x') ?>" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Kelas X</p>
+                                                    <p>Data Dapodik</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a href="<?= site_url('tatausaha/data_siswa_kelas_xi') ?>" class="nav-link">
+                                                <a href="<?= site_url('tatausaha/data_siswa') ?>" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Kelas XI</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="<?= site_url('tatausaha/data_siswa_kelas_xii') ?>" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Kelas XII</p>
+                                                    <p>Data Siswa</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>Alumni</p>
+                                                    <p>Data Alumni</p>
                                                 </a>
                                             </li>
                                         </ul>
@@ -190,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
+                                <ul class="nav nav-treeview ml-4">
                                     <li class="nav-item">
                                         <a href="<?= site_url('tatausaha/data_tagihan_smk') ?>" class="nav-link">
                                             <i class="fas fa-circle nav-icon"></i>

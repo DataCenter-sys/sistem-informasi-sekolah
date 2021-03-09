@@ -29,12 +29,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>ID Tagihan</th>
-                                        <th>Kelas</th>
-                                        <th>DU</th>
-                                        <th>SPP</th>
-                                        <th>Buku</th>
-                                        <th>PTS</th>
-                                        <th>PAS</th>
+                                        <th>No_Tagihan</th>
+                                        <th>Daftar Ulang</th>
                                         <th>Kegiatan</th>
                                     </tr>
                                 </thead>
@@ -49,25 +45,6 @@
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target="#duModal">
                                                     <?= $gd['daftar_ulang'] ?>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#" data-toggle="modal" data-target="#sppModal">
-                                                    <?= $gd['total_spp'] ?>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#" data-toggle="modal" data-target="#bukuModal">
-                                                    <?= $gd['buku'] ?>
-                                                </a>
-                                            </td>
-                                            <td><a href="#" data-toggle="modal" data-target="#ptsModal">
-                                                    <?= $gd['pts'] ?>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#" data-toggle="modal" data-target="#pasModal">
-                                                    <?= $gd['pas'] ?>
                                                 </a>
                                             </td>
                                             <td>

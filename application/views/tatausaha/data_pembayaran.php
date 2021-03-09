@@ -15,136 +15,149 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+            <button class="btn btn-outline-primary btn-sm mb-2" data-toggle="modal" data-target="#riwayat">
+                Riwayat Pembayaran
+            </button>
             <!-- Data -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead lass="bg-primary">
-                                    <tr>
-                                        <th>Nomor Tagihan</th>
-                                        <th>Nama Siswa</th>
-                                        <th>Kelas</th>
-                                        <th>Daftar Ulang</th>
-                                        <th>Buku</th>
-                                        <th>SPP</th>
-                                        <th>PTS</th>
-                                        <th>PAS</th>
-                                        <th>Kegiatan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Nomor Tagihan</td>
-                                        <td>Nama Siswa</td>
-                                        <td>Kelas</td>
-                                        <td>
-                                            <a href="" class="btn btn-sm btn-outline-primary" id="edit" data-toggle="modal" data-target="#viewModal"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-sm btn-outline-success" id="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn btn-sm btn-outline-primary" id="edit" data-toggle="modal" data-target="#viewModal"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-sm btn-outline-success" id="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn btn-sm btn-outline-primary" id="edit" data-toggle="modal" data-target="#viewModal"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-sm btn-outline-success" id="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn btn-sm btn-outline-primary" id="edit" data-toggle="modal" data-target="#viewModal"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-sm btn-outline-success" id="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn btn-sm btn-outline-primary" id="edit" data-toggle="modal" data-target="#viewModal"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-sm btn-outline-success" id="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="btn btn-sm btn-outline-primary" id="edit" data-toggle="modal" data-target="#viewModal"><i class="fas fa-eye"></i></a>
-                                            <a href="" class="btn btn-sm btn-outline-success" id="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post">
+
+                        <!-- Form 1 -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="du" class="form-col-label">Daftar Ulang</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="du" id="form1" placeholder="..." disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="checkbox" name="check" id="checked_1"> Actived
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
+
+                        <!-- Form 2 -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="spp" class="form-col-label">SPP</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="spp" id="form2" placeholder="..." disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="checkbox" name="check" id="checked_2"> Actived
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form 3 -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="spp" class="form-col-label">PTS</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="pts" id="form2" placeholder="..." disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="checkbox" name="check" id="checked_2"> Actived
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form 4 -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="spp" class="form-col-label">PAS</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="pas" id="form2" placeholder="..." disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="checkbox" name="check" id="checked_2"> Actived
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form 5 -->
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="spp" class="form-col-label">Kegiatan</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="pas" id="form2" placeholder="..." disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="checkbox" name="check" id="checked_2"> Actived
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <button class="btn btn-md btn-outline-primary">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
-                <!-- /.col -->
+
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="riwayat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title text-primary">Nama Siswa</h3>
+                <h5 class="modal-title text-primary" id="inputModalLabel">Riwayat Pembayaran</h5>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Daftar Ulang</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="du" id="" placeholder="Masukan nominal">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">SPP</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="spp" id="" placeholder="Masukan nominal">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">PTS</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="pts" id="" placeholder="Masukan nominal">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">PAS</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="pas" id="" placeholder="Masukan nominal">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Uang Kegiatan</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="kegiatan" id="" placeholder="Masukan nominal">
-                        </div>
-                    </div>
-                </div>
+                <a href="#" target="blank" class="btn btn-outline-danger btn-md mb-4 align-item-center">Print All Report</a>
+
+                <table id="example1" class="table table-striped text-center table-hover table-condensed">
+                    <thead lass="bg-primary">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Kelas</th>
+                            <th>Kode Pembayaran</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>

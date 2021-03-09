@@ -31,6 +31,10 @@ class Data extends CI_Model
         return $this->db->get('tb_data_guru')->result_array();
     }
 
+    public function get()
+    {
+    }
+
     /**
      * Fungsi import data spread sheet.
      *

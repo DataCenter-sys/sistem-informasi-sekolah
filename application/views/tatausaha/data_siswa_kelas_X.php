@@ -4,7 +4,7 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="col-sm-12">
-                <h1 class="m-0">Data Siswa Kelas X</h1>
+                <h1 class="m-0">Data Dapodik</h1>
                 <div class="mt-1 mb-1">
                     <?= $this->session->flashdata('massage'); ?>
                 </div>

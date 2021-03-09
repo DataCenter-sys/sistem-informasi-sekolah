@@ -14,6 +14,7 @@
     <div class="float-right d-none d-sm-inline">
         Situs Website
     </div>
+
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020 <a href="#">Name Website</a>.</strong> All rights
     reserved.
@@ -40,25 +41,6 @@
 <script src="<?= site_url('plugins/jszip/jszip.min.js'); ?>"></script>
 <script src="<?= site_url('plugins/pdfmake/pdfmake.min.js'); ?>"></script>
 <script src="<?= site_url('plugins/pdfmake/vfs_fonts.js'); ?>"></script>
-<!-- Select2 -->
-<script src="<?= site_url('plugins/plugins/select2/js/select2.full.min.js'); ?>"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="<?= site_url('plugins/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js'); ?>"></script>
-<!-- InputMask -->
-<script src="<?= site_url('plugins/plugins/moment/moment.min.js'); ?>"></script>
-<script src="<?= site_url('plugins/plugins/inputmask/jquery.inputmask.min.js'); ?>"></script>
-<!-- date-range-picker -->
-<script src="<?= site_url('plugins/plugins/daterangepicker/daterangepicker.js'); ?>"></script>
-<!-- bootstrap color picker -->
-<script src="<?= site_url('plugins/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js'); ?>"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?= site_url('plugins/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'); ?>"></script>
-<!-- Bootstrap Switch -->
-<script src="<?= site_url('plugins/plugins/bootstrap-switch/js/bootstrap-switch.min.js'); ?>"></script>
-<!-- BS-Stepper -->
-<script src="<?= site_url('plugins/plugins/bs-stepper/js/bs-stepper.min.js'); ?>"></script>
-<!-- dropzonejs -->
-<script src="<?= site_url('plugins/dropzone/min/dropzone.min.js'); ?>"></script>
 <!-- AdminLTE App -->
 <script src="<?= site_url('assets/js/adminlte.min.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
@@ -74,67 +56,164 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-        });
-        // $("#example1").DataTable({
-        //     "responsive": true, "lengthChange": false, "autoWidth": false,
-        //     "buttons": ["csv", "excel", "pdf", "print"]
-        // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-        // DropzoneJS Demo Code Start
-        Dropzone.autoDiscover = false;
-
-        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-        var previewNode = document.querySelector("#template");
-        previewNode.id = "";
-        var previewTemplate = previewNode.parentNode.innerHTML;
-        previewNode.parentNode.removeChild(previewNode);
-
-        var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-            url: "/target-url", // Set the url
-            thumbnailWidth: 80,
-            thumbnailHeight: 80,
-            parallelUploads: 20,
-            previewTemplate: previewTemplate,
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: "#previews", // Define the container to display the previews
-            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+            "language": {
+                "loadingRecords": "Mohon Tunggu...",
+                "emptyTable": "Belum ada data yang tersimpan",
+                "paginate": {
+                    "previous": '‹',
+                    "next": '›'
+                },
+                " aria": {
+                    "paginate": {
+                        "sortAscending": " - click/return to sort ascending",
+                        "previous": 'Previous',
+                        "next": 'Next'
+                    }
+                }
+            }
         });
 
-        myDropzone.on("addedfile", function(file) {
-            // Hookup the start button
-            file.previewElement.querySelector(".start").onclick = function() {
-                myDropzone.enqueueFile(file);
-            };
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false,
+            "responsive": true,
+            "lengthMenu": [5],
+            "language": {
+                "loadingRecords": "Mohon Tunggu...",
+                "emptyTable": "Belum ada data yang tersimpan",
+                "paginate": {
+                    "previous": '‹',
+                    "next": '›'
+                },
+                " aria": {
+                    "paginate": {
+                        "sortAscending": " - click/return to sort ascending",
+                        "previous": 'Previous',
+                        "next": 'Next'
+                    }
+                }
+            }
         });
 
-        // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function(progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+        $('#checked_1').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form1').each(function() {
+                $(this).prop('disabled', !checked);
+            });
         });
 
-        myDropzone.on("sending", function(file) {
-            // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1";
-            // And disable the start button
-            file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+        $('#checked_2').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form2').each(function() {
+                $(this).prop('disabled', !checked);
+            });
+
         });
 
-        // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("queuecomplete", function(progress) {
-            document.querySelector("#total-progress").style.opacity = "0";
+        $('#checked_3').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form3').each(function() {
+                $(this).prop('disabled', !checked);
+            });
         });
 
-        // Setup the buttons for all transfers
-        // The "add files" button doesn't need to be setup because the config
-        // `clickable` has already been specified.
-        document.querySelector("#actions .start").onclick = function() {
-            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-        };
-        document.querySelector("#actions .cancel").onclick = function() {
-            myDropzone.removeAllFiles(true);
-        };
-        // DropzoneJS Demo Code End
+        $('#checked_4').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form4').each(function() {
+                $(this).prop('disabled', !checked);
+            });
+
+        });
+
+        $('#checked_5').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form5').each(function() {
+                $(this).prop('disabled', !checked);
+            });
+
+        });
+
+        $('#checked_6').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form6').each(function() {
+                $(this).prop('disabled', !checked);
+            });
+
+        });
+
+        $('#checked_7').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form7').each(function() {
+                $(this).prop('disabled', !checked);
+            });
+
+        });
+
+        $('#checked_8').click(function() {
+            let checked = this.checked;
+            console.log(checked);
+            $('#form8').each(function() {
+                $(this).prop('disabled', !checked);
+            });
+
+        });
     });
+
+    // Get data import data tb data siswa ke tb siswa
+    $(document).ready(function() {
+        $('#nama').change(function() {
+            let nama = $(this).val();
+            $.ajax({
+                url: "<?php echo site_url('tatausaha/getData'); ?>",
+                method: "POST",
+                data: {
+                    nama: nama
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    let html1 = '',
+                        html2 = '',
+                        html3 = '',
+                        html4 = '';
+
+                    let i, j, k, l;
+
+                    for (j = 0; j < data.length; j++) {
+                        html2 += '<option value=' + data[j].nik_siswa + '>' + data[j].nik_siswa + '</option>';
+                    }
+                    $('#nik').html(html2);
+
+                    for (i = 0; i < data.length; i++) {
+                        html1 += '<option value=' + data[i].nisn + '>' + data[i].nisn + '</option>';
+                    }
+                    $('#nisn').html(html1);
+
+                    for (k = 0; k < data.length; k++) {
+                        html3 += '<option value=' + data[k].tempat_lahir + '>' + data[k].tempat_lahir + '</option>';
+                    }
+                    $('#tempat_lahir').html(html3);
+
+                    for (l = 0; l < data.length; l++) {
+                        html4 += '<option value=' + data[l].tanggal_lahir + '>' + data[l].tanggal_lahir + '</option>';
+                    }
+                    $('#tanggal_lahir').html(html4);
+                }
+            })
+            return false;
+        })
+    })
 </script>
 </body>
 

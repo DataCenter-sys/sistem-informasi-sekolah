@@ -207,12 +207,14 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_footer');
     }
 
-    public function data_siswa_kelas_xi()
+    public function data_siswa()
     {
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        $data['get_data'] = $this->db->get('tb_data_siswa')->result_array();
+        $data['get_data_siswa'] = $this->db->get('tb_siswa')->result_array();
         $data['username'] = $this->session->userdata('username');
         $this->load->view('template/template_header', $data);
-        $this->load->view('tatausaha/data_siswa_kelas_XI', $data);
+        $this->load->view('tatausaha/data_siswa', $data);
         $this->load->view('template/template_footer');
     }
 
@@ -1254,5 +1256,100 @@ class TataUsaha extends CI_Controller
             </div>'
         );
         redirect('tatausaha/data_guru');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Import data dapodik to data siswa
+    |--------------------------------------------------------------------------
+    |
+    | 
+    | 
+    | 
+    |
+    */
+    public function getData()
+    {
+        $nama = $this->input->post('nama', true);
+        $data = $this->db->get_where('tb_data_siswa', ['nama' => $nama])->result_array();
+        echo json_encode($data);
+    }
+
+    public function save_data()
+    {
+        $data = [
+            'nama' => htmlspecialchars($this->input->post('nama')),
+            'nisn' => htmlspecialchars($this->input->post('nisn')),
+            'nik' => htmlspecialchars($this->input->post('nik')),
+            'kelas' => htmlspecialchars($this->input->post('kelas')),
+            'jurusan' => htmlspecialchars($this->input->post('jurusan')),
+            'tempat_lahir' => htmlspecialchars($this->input->post('tempat_lahir')),
+            'tanggal_lahir' => htmlspecialchars($this->input->post('tanggal_lahir')),
+            'status' => htmlspecialchars($this->input->post('status'))
+        ];
+
+        $insert = $this->db->insert('tb_siswa', $data);
+        if ($insert) {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                Sukses Import Data
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>'
+            );
+            redirect('tatausaha/data_siswa');
+        } else {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-danger alert-dismissable fade show" role="alert">
+                Sukses Import Data
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>'
+            );
+            redirect('tatausaha/data_siswa');
+        }
+    }
+
+    public function update_data($nisn)
+    {
+        // get data from input field
+        $data = [
+            'nama' => htmlspecialchars($this->input->post('nama')),
+            'nisn' => htmlspecialchars($this->input->post('nisn')),
+            'nik' => htmlspecialchars($this->input->post('nik')),
+            'kelas' => htmlspecialchars($this->input->post('kelas')),
+            'jurusan' => htmlspecialchars($this->input->post('jurusan')),
+            'tempat_lahir' => htmlspecialchars($this->input->post('tempat_lahir')),
+            'tanggal_lahir' => htmlspecialchars($this->input->post('tanggal_lahir')),
+            'status' => htmlspecialchars($this->input->post('status'))
+        ];
+        $result = $this->db->update('tb_siswa', $data, ['nisn' => $nisn]);
+        if ($result) {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                    Success update data
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>'
+            );
+            redirect('tatausaha/data_siswa');
+        } else {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    Failed update data
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>'
+            );
+            redirect('tatausaha/data_siswa');
+        }
     }
 }
