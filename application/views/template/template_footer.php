@@ -56,6 +56,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "lengthMenu": [5, 10, 25, 50],
             "language": {
                 "loadingRecords": "Mohon Tunggu...",
                 "emptyTable": "Belum ada data yang tersimpan",
@@ -82,6 +83,32 @@
             "autoWidth": false,
             "responsive": true,
             "lengthMenu": [5],
+            "language": {
+                "loadingRecords": "Mohon Tunggu...",
+                "emptyTable": "Belum ada data yang tersimpan",
+                "paginate": {
+                    "previous": '‹',
+                    "next": '›'
+                },
+                " aria": {
+                    "paginate": {
+                        "sortAscending": " - click/return to sort ascending",
+                        "previous": 'Previous',
+                        "next": 'Next'
+                    }
+                }
+            }
+        });
+
+        $('#example3').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "lengthMenu": [5, 10, 25, 50],
             "language": {
                 "loadingRecords": "Mohon Tunggu...",
                 "emptyTable": "Belum ada data yang tersimpan",
@@ -209,6 +236,32 @@
                         html4 += '<option value=' + data[l].tanggal_lahir + '>' + data[l].tanggal_lahir + '</option>';
                     }
                     $('#tanggal_lahir').html(html4);
+                }
+            })
+            return false;
+        })
+    })
+
+    // Get data import data tb data siswa ke tb siswa
+    $(document).ready(function() {
+        $('#jenis_tagihan').change(function() {
+            let jenis_tagihan = $('#jenis_tagihan').val();
+            $.ajax({
+                url: "<?php echo site_url('tatausaha/getDataTagihan'); ?>",
+                method: "POST",
+                data: {
+                    jenis_tagihan: jenis_tagihan
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    let html = '';
+                    let i;
+
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].no_tagihan + '>' + data[i].no_tagihan + '</option>';
+                    }
+                    $('#nomor_tagihan').html(html);
                 }
             })
             return false;

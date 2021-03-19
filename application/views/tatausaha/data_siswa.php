@@ -5,8 +5,15 @@
         <div class="container-fluid">
             <div class="col-sm-12">
                 <h1 class="m-0">Data Siswa</h1>
-                <div class="mt-1 mb-1">
+                <div class="mt-1 mb-2">
                     <?= $this->session->flashdata('massage'); ?>
+                </div>
+                <button class="dropdown btn btn-outline-secondary dropdown-toggle btn-sm mb-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Unduh Data
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item text-danger" href="<?= site_url('tatausaha/print_data_siswa_pdf') ?>" target="blank">PDF</a>
+                    <a class="dropdown-item text-success" href="#">EXCEL</a>
                 </div>
             </div>
         </div>
@@ -28,8 +35,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="" class="col-form-label">Nama Siswa</label>
-                                            <select name="nama" id="nama" class="custom-select">
-                                                <option>Pilih Siswa</option>
+                                            <select name="nama" id="nama" class="custom-select" required>
+                                                <option value="">Pilih Siswa</option>
                                                 <?php foreach ($get_data as $gd) : ?>
                                                     <option value="<?= $gd['nama'] ?>"><?= $gd['nama'] ?></option>
                                                 <?php endforeach; ?>
@@ -39,8 +46,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="" class="col-form-label">Kelas</label>
-                                            <select name="kelas" id="kelas" class="custom-select">
-                                                <option>Pilih Kelas</option>
+                                            <select name="kelas" id="kelas" class="custom-select" required>
+                                                <option value="">Pilih Kelas</option>
                                                 <option value="X">X</option>
                                                 <option value="XI">XI</option>
                                                 <option value="XII">XII</option>
@@ -50,8 +57,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="" class="col-form-label">Jurusan</label>
-                                            <select name="jurusan" id="jurusan" class="custom-select">
-                                                <option>Pilih Jurusan</option>
+                                            <select name="jurusan" id="jurusan" class="custom-select" required>
+                                                <option value="">Pilih Jurusan</option>
                                                 <optgroup label="Administrasi">
                                                     <option value="AKL">Akuntansi dan Keuangan Lembaga</option>
                                                     <option value="OTKP">Otomatisasi Tata Kelola Perkantoran</option>
@@ -69,7 +76,7 @@
                                     <div class="col-md-3">
                                         <div class="row form-group">
                                             <label for="" class="col-form-label">Status</label>
-                                            <select name="status" id="" class="custom-select">
+                                            <select name="status" id="" class="custom-select" required>
                                                 <option value="">Pilih Status</option>
                                                 <option value="Siswa Aktif">Siswa Aktif</option>
                                                 <option value="Siswa Pindah">Siswa Pindah</option>
@@ -128,7 +135,7 @@
                             <h5>Import data</h5>
                         </div>
                         <div class="card-body">
-                            <table id="example2" class="table table-responsive-lg table-borderless table-striped">
+                            <table id="example2" class="table table-responsive-lg table-borderless table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>NISN</th>
@@ -148,9 +155,9 @@
                                             <td><?= $gds['kelas'] ?></td>
                                             <td><?= $gds['jurusan'] ?></td>
                                             <td><?= $gds['status'] ?></td>
-                                            <td>
-                                                <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#viewModal<?= $gds['id']; ?>"><i class="fas fa-eye fa-xl"></i></a>
-                                                <a href="#" class="badge badge-success" data-toggle="modal" data-target="#editModal<?= $gds['id']; ?>"><i class="fas fa-pencil-alt fa-xl"></i></a>
+                                            <td class="text-center">
+                                                <a href="#" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#viewModal<?= $gds['id']; ?>">Lihat</a>
+                                                <a href="#" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#editModal<?= $gds['id']; ?>">Edit</i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

@@ -118,11 +118,75 @@ class TataUsaha extends CI_Controller
 
     public function input_tagihan_smk()
     {
-        // Code Here  
+        $data = [
+            'no_tagihan' => htmlspecialchars($this->input->post('no_tagihan')),
+            'jenis_tagihan' => htmlspecialchars($this->input->post('jenis_tagihan')),
+            'jumlah_tagihan' => htmlspecialchars($this->input->post('jumlah')),
+            'kategori_tagihan' => htmlspecialchars($this->input->post('kategori'))
+        ];
+
+        $result = $this->db->insert('tb_tagihan', $data);
+        if ($result) {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                    Sukses membuat tagihan
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>'
+            );
+            redirect('tatausaha/data_tagihan_smk');
+        } else {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    Gagal membuat tagihan
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>'
+            );
+            redirect('tatausaha/data_tagihan_smk');
+        }
+    }
+
+    public function data_tagihan_smk()
+    {
+
+        // $data['get_data'] = $this->ud->tagihan();
+        $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        $data['username'] = $this->session->userdata('username');
+        function acak($length)
+        {
+            $string = '';
+            $character = array_merge(range(
+                '0',
+                '9'
+            ));
+            $max = count($character) - 1;
+            for ($i = 0; $i < $length; $i++) {
+                $random = mt_rand(0, $max);
+                $string .= $character[$random];
+            }
+            return $string;
+        }
+        $data['no_acak'] = acak(10);
+        $data['get_data'] = $this->db->get('tb_tagihan')->result_array();
+        $this->load->view('template/template_header', $data);
+        $this->load->view('tatausaha/data_tagihan', $data);
+        $this->load->view('template/template_footer');
+    }
+
+    public function data_pembayaran_smk()
+    {
         function random($length)
         {
             $string = '';
-            $character = array_merge(range('0', '9'));
+            $character = array_merge(range(
+                '0',
+                '9'
+            ));
             $max = count($character) - 1;
             for ($i = 0; $i < $length; $i++) {
                 $random = mt_rand(0, $max);
@@ -131,62 +195,11 @@ class TataUsaha extends CI_Controller
             return $string;
         }
 
-        $no = random(10);
-        $spp = htmlspecialchars($this->input->post('spp'));
-        if ($spp) {
-            $hasil = $spp / 12;
-        }
-        $data = [
-            'no_tagihan' => $no,
-            'kelas' => htmlspecialchars($this->input->post('kelas')),
-            'tgh_spp_1' => $hasil,
-            'tgh_spp_2' => $hasil,
-            'tgh_spp_3' => $hasil,
-            'tgh_spp_4' => $hasil,
-            'tgh_spp_5' => $hasil,
-            'tgh_spp_6' => $hasil,
-            'tgh_spp_7' => $hasil,
-            'tgh_spp_8' => $hasil,
-            'tgh_spp_9' => $hasil,
-            'tgh_spp_10' => $hasil,
-            'tgh_spp_11' => $hasil,
-            'tgh_spp_12' => $hasil,
-            'tgh_du' => htmlspecialchars($this->input->post('du')),
-            'tgh_pts' => htmlspecialchars($this->input->post('pts')),
-            'tgh_pas' => htmlspecialchars($this->input->post('pas')),
-            'tgh_buku' => htmlspecialchars($this->input->post('buku')),
-            'tgh_kegiatan' => htmlspecialchars($this->input->post('kegiatan'))
-        ];
-
-        $this->db->insert('tb_tagihan', $data);
-        $this->session->set_flashdata(
-            'massage',
-            '<div class="alert alert-success alert-dismissable fade show" role="alert">
-                Sukses membuat tagihan
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>'
-        );
-        redirect('tatausaha/data_tagihan_smk');
-    }
-
-    public function data_tagihan_smk()
-    {
-
-        $data['get_data'] = $this->ud->tagihan();
+        $data['get_data_siswa'] = $this->db->get('tb_siswa')->result_array();
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
         $data['username'] = $this->session->userdata('username');
-        $this->load->view('template/template_header', $data);
-        $this->load->view('tatausaha/data_tagihan', $data);
-        $this->load->view('template/template_footer');
-    }
-
-    public function data_pembayaran_smk()
-    {
-        // $data['get_data'] = $this->ud->join_tagihan();
-        $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
-        $data['username'] = $this->session->userdata('username');
+        $data['join'] = $this->data->join();
+        $data['random'] = random(10);
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_pembayaran', $data);
         $this->load->view('template/template_footer');
@@ -195,6 +208,56 @@ class TataUsaha extends CI_Controller
     public function data_tunggakan_smk()
     {
         // Code Here
+    }
+
+    public function insert_payment()
+    {
+        $nowDate = date("d M Y");
+        $data = [
+            'nisn' => htmlspecialchars($this->input->post('nisn')),
+            'nama' => htmlspecialchars($this->input->post('nama')),
+            'kelas' => htmlspecialchars($this->input->post('kelas')),
+            'no_pembayaran' => htmlspecialchars($this->input->post('no_pembayaran')),
+            'jenis_pembayaran' => htmlspecialchars($this->input->post('jenis_pembayaran')),
+            'jumlah_pembayaran' => htmlspecialchars($this->input->post('nominal_pembayaran')),
+            'tanggal_pembayaran' => $nowDate,
+            'status_pembayaran' => 'Lunas'
+        ];
+
+        $insert = $this->db->insert('tb_pembayaran', $data);
+        if ($insert) {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                Sukses Melakukan Pembayaran
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>'
+            );
+            redirect('tatausaha/data_pembayaran_smk');
+        } else {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-danger alert-dismissable fade show" role="alert">
+                Gagal Melakukan Pembayaran
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>'
+            );
+            redirect('tatausaha/data_pembayaran_smk');
+        }
+    }
+
+    public function history($nisn)
+    {
+        $data['view'] = $this->db->get_where('tb_pembayaran', ['nisn' => $nisn])->result_array();
+        $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('template/template_header', $data);
+        $this->load->view('tatausaha/history', $data);
+        $this->load->view('template/template_footer');
     }
 
     public function data_siswa_kelas_x()
@@ -216,6 +279,16 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_siswa', $data);
         $this->load->view('template/template_footer');
+    }
+
+    public function print_data_siswa_pdf()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->debug = true;
+        $data['get_data_siswa'] = $this->db->get('tb_siswa')->result_array();
+        $html = $this->load->view('tatausaha/print', $data, true);
+        $mpdf->WriteHtml($html);
+        $mpdf->Output('Cetak-data-siswa.pdf', \Mpdf\Output\Destination::DOWNLOAD);
     }
 
     public function data_siswa_kelas_xii()
@@ -1272,6 +1345,13 @@ class TataUsaha extends CI_Controller
     {
         $nama = $this->input->post('nama', true);
         $data = $this->db->get_where('tb_data_siswa', ['nama' => $nama])->result_array();
+        echo json_encode($data);
+    }
+
+    public function getDataTagihan()
+    {
+        $jenis_tagihan = $this->input->post('jenis_tagihan', true);
+        $data = $this->db->get_where('tb_tagihan', ['jenis_tagihan' => $jenis_tagihan])->result_array();
         echo json_encode($data);
     }
 

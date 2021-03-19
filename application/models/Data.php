@@ -77,4 +77,23 @@ class Data extends CI_Model
         $data = $this->_batchImport;
         $this->db->insert_batch('tb_data_siswa', $data);
     }
+
+    public function join()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_tagihan');
+        $this->db->join('tb_siswa', 'tb_siswa.kelas=tb_tagihan.kategori_tagihan');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function join2($kelas)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_tagihan');
+        $this->db->join('tb_siswa', 'tb_siswa.kelas=tb_tagihan.kategori_tagihan');
+        $this->db->where('tb_tagihan.kategori_tagihan', $kelas);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

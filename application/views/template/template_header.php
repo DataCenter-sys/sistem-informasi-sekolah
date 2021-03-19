@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>Nusantara 1 Tangerang</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&family=Montserrat&display=fallback">
@@ -56,7 +56,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -64,9 +63,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <div class="badge">
-                    <h3>Wellcome <span style="text-transform:uppercase"><?= $username; ?></span> </h3>
-                </div>
             </ul>
 
             <!-- Right navbar links -->
@@ -142,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <a href="#" class="nav-link">
                                             <i class="fas fa-circle nav-icon"></i>
                                             <p>Data Siswa</p>
-                                            <i class="right fas fa-angle-left"></i>
+                                            <i class="right fas fa-angle-left fa-xs"></i>
                                         </a>
                                         <ul class="nav nav-treeview ml-4">
                                             <li class="nav-item">
@@ -181,7 +177,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <i class="nav-icon fas fa-money-bill-wave"></i>
                                     <p>
                                         Pembayaran Siswa
-                                        <i class="right fas fa-angle-left"></i>
+                                        <i class="right fas fa-angle-left fa-xs"></i>
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview ml-4">

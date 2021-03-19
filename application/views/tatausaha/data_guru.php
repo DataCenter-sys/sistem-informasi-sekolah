@@ -66,8 +66,7 @@
                                             <td><?= $gda['jenis_ptk']; ?></td>
                                             <td><?= $gda['sk_cpns']; ?></td>
                                             <td>
-                                                <a class="badge badge-primary" href="#" data-toggle="modal" data-target="#viewModal<?= $gda['id']; ?>">View</a>
-                                                <a class="badge badge-success" href="#" data-toggle="modal" data-target="#editModal<?= $gda['id']; ?>">Edit</a>
+                                                <a class="btn btn-outline-primary btn-sm btn-block" href="#" data-toggle="modal" data-target="#viewModal<?= $gda['id']; ?>">View</a>
                                             </td>
                                         </tr>
                                     <?php }

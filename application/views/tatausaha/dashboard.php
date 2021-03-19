@@ -111,7 +111,7 @@
         <!-- /.row -->
 
         <div class="jumbotron bg-gradient-blue mt-2">
-            <h1>You are login for Admin</h1>
+            <h1>You are login for <?= $username ?></h1>
             <h4>Welcome To Application System Information School</h4>
         </div>
     </div>
