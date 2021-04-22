@@ -35,7 +35,9 @@ class DataCenter extends CI_Controller
     {
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 9])->row_array();
         $data['username'] = $this->session->userdata('username');
-        $data['c'] = $this->user_model->counting();
+        $data['a'] = $this->user_model->counting();
+        $data['c'] = $this->user_model->counting_active('active', 1);
+        $data['d'] = $this->user_model->counting_active('active', 0);
         $this->load->view('template/template_header', $data);
         $this->load->view('main', $data);
         $this->load->view('template/template_footer');
@@ -105,7 +107,7 @@ class DataCenter extends CI_Controller
                     </button>
                 </div>'
             );
-            redirect('auth');
+            redirect('datacenter/input_data_akun');
         } else {
             $data = [
                 'name' => htmlspecialchars($this->input->post('name')),
@@ -118,17 +120,30 @@ class DataCenter extends CI_Controller
                 'date_created' => time()
             ];
 
-            $this->db->insert('tb_user', $data);
-            $this->session->set_flashdata(
-                'massage',
-                '<div class="alert alert-success alert-dismissable fade show" role="alert">
-                    Success created account
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>'
-            );
-            redirect('datacenter/input_data_akun');
+            $result = $this->db->insert('tb_user', $data);
+            if ($result) {
+                $this->session->set_flashdata(
+                    'massage',
+                    '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                        Success created account
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
+                redirect('datacenter/input_data_akun');
+            } else {
+                $this->session->set_flashdata(
+                    'massage',
+                    '<div class="alert alert-success alert-dismissable fade show" role="alert">
+                        Failed created account
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>'
+                );
+                redirect('datacenter/input_data_akun');
+            }
         }
     }
 

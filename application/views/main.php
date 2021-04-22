@@ -17,54 +17,52 @@
         <div class="container-fluid">
             <!-- Data -->
             <div class="row m-0">
-                <?php
-                foreach ($c as $row) { ?>
 
-                    <div class="col-12 col-sm-4 col-md-4">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">Member Active</span>
-                                <span class="info-box-number"><?= $row['total'] ?></span>
-                            </div>
-                            <!-- /.info-box-content -->
+                        <div class="info-box-content">
+                            <span class="info-box-text">Member Active</span>
+                            <span class="info-box-number">
+                                <?= $c ?>
+                            </span>
                         </div>
-                        <!-- /.info-box -->
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.col -->
-                    <div class="col-12 col-sm-4 col-md-4">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-exclamation"></i></span>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-exclamation"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">Member Non Active</span>
-                                <span class="info-box-number">0</span>
-                            </div>
-                            <!-- /.info-box-content -->
+                        <div class="info-box-content">
+                            <span class="info-box-text">Member Non Active</span>
+                            <span class="info-box-number"><?= $d ?></span>
                         </div>
-                        <!-- /.info-box -->
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.col -->
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
 
-                    <!-- fix for small devices only -->
-                    <div class="clearfix hidden-md-up"></div>
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
 
-                    <!-- /.col -->
-                    <div class="col-12 col-sm-4 col-md-4">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-equals"></i></span>
+                <!-- /.col -->
+                <div class="col-12 col-sm-4 col-md-4">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-equals"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">Total Member</span>
-                                <span class="info-box-number">0</span>
-                            </div>
-                            <!-- /.info-box-content -->
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Member</span>
+                            <span class="info-box-number"><?= $a ?></span>
                         </div>
-                        <!-- /.info-box -->
+                        <!-- /.info-box-content -->
                     </div>
-                <?php }
-                ?>
+                    <!-- /.info-box -->
+                </div>
             </div>
             <!-- /.row -->
 

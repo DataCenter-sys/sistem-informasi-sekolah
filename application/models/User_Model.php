@@ -26,32 +26,22 @@ class User_Model extends CI_Model
         return $result;
     }
 
-    function counting_active()
-    {
-        $this->db->select('id_user, COUNT(name) as total');
-        $this->db->group_by('name');
-        $this->db->order_by('total', 'desc');
-        $result = $this->db->get('tb_user')->result_array();
-        return $result;
-    }
-
-    function counting_not_active()
-    {
-        $this->db->select('id_user, COUNT(name) as total');
-        $this->db->group_by('name');
-        $this->db->order_by('total', 'desc');
-        $result = $this->db->get('tb_user')->result_array();
-        return $result;
-    }
-
     function counting()
     {
-        $this->db->select('id_user, COUNT(name) as total');
-        $this->db->group_by('name');
-        $this->db->order_by('total', 'desc');
-        $result = $this->db->get('tb_user')->result_array();
+        $result = $this->db->where(['id_user'])->from("tb_user")->count_all_results();
         return $result;
     }
+
+    function counting_active($row, $active)
+    {
+        if ($active) {
+            $result = $this->db->where([$row => $active])->from("tb_user")->count_all_results();
+        } else {
+            $result = $this->db->where([$row => $active])->from("tb_user")->count_all_results();
+        }
+        return $result;
+    }
+
 
     public function tagihan()
     {

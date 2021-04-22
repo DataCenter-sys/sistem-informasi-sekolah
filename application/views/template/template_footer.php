@@ -41,6 +41,7 @@
 <script src="<?= site_url('plugins/jszip/jszip.min.js'); ?>"></script>
 <script src="<?= site_url('plugins/pdfmake/pdfmake.min.js'); ?>"></script>
 <script src="<?= site_url('plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+<script src="<?= site_url('plugins/chart.js/Chart.min.js'); ?>"></script>
 <!-- AdminLTE App -->
 <script src="<?= site_url('assets/js/adminlte.min.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
@@ -71,7 +72,8 @@
                         "next": 'Next'
                     }
                 }
-            }
+            },
+            "scrollX": true
         });
 
         $('#example2').DataTable({
@@ -266,6 +268,67 @@
             })
             return false;
         })
+    })
+
+    //-------------
+    //- DONUT CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var donutChartCanvasSiswa = $('#donutChartSiswa').get(0).getContext('2d')
+    var donutChartCanvasGuru = $('#donutChartGuru').get(0).getContext('2d')
+    var donutDataSiswa = {
+        datasets: [{
+            data: [
+                <?= $mm ?>,
+                <?= $tkj ?>,
+                <?= $rpl ?>,
+                <?= $pspt ?>,
+                <?= $dkv ?>,
+                <?= $akl ?>,
+                <?= $otkp ?>,
+            ],
+            backgroundColor: ['#6c757d', '#ff2000', '#ffa710', '#19fe49', '#ff07f2', '#28a745', '#007bff'],
+        }],
+        labels: [
+            'MM',
+            'TKJ',
+            'RPL',
+            'PSPT',
+            'DKV',
+            'AKL',
+            'OTKP',
+        ]
+    }
+    var donutDataGuru = {
+        datasets: [{
+            data: [
+                <?= $pns ?>,
+                <?= $gty ?>,
+                <?= $honor ?>
+            ],
+            backgroundColor: ['#6c757d', '#ff2000', '#ffa710'],
+        }],
+        labels: [
+            'PNS',
+            'GTY',
+            'Honorer',
+        ]
+    }
+    var donutOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    var donutChart1 = new Chart(donutChartCanvasSiswa, {
+        type: 'doughnut',
+        data: donutDataSiswa,
+        options: donutOptions
+    })
+    var donutChart2 = new Chart(donutChartCanvasGuru, {
+        type: 'doughnut',
+        data: donutDataGuru,
+        options: donutOptions
     })
 </script>
 </body>

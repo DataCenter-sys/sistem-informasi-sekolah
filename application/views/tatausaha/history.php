@@ -24,11 +24,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <table id="example3" class="table table-bordered table-striped">
-                                        <thead class="bg-dark">
+                                        <thead class="bg-dark" style="font-size: 14px;">
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Siswa</th>
-                                                <th>Kelas</th>
                                                 <th>Nomor Pembayaran</th>
                                                 <th>Jumlah</th>
                                                 <th>Jenis Pembayaran</th>
@@ -36,14 +35,13 @@
                                                 <th>Status Bayar</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="font-size: 14px;">
                                             <?php
                                             $no = 1;
                                             foreach ($view as $v) { ?>
                                                 <tr>
                                                     <td><?= $no++ ?></td>
                                                     <td><?= $v['nama'] ?></td>
-                                                    <td><?= $v['kelas'] ?></td>
                                                     <td><?= $v['no_pembayaran'] ?></td>
                                                     <td><?= $v['jumlah_pembayaran'] ?></td>
                                                     <td><?= $v['jenis_pembayaran'] ?></td>

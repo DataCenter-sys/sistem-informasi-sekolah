@@ -14,105 +14,38 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+            <div class="jumbotron bg-gradient-blue">
+                <h1>You are login for <?= $username ?></h1>
+                <h4>Welcome To Application System Information School</h4>
+            </div>
             <!-- Data -->
             <div class="row">
-                <div class="col-12 col-sm-4 col-md-4">
-                    <div class="info-box bg-primary">
-                        <div class="info-box-content ">
-                            <span class="info-box-text">Jurusan OTKP</span>
-                            <span class="info-box-number">0</span>
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Jumlah siswa sesuai jurusan</h3>
                         </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-4 col-md-4">
-                    <div class="info-box bg-success mb-3">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Jurusan AKL</span>
-                            <span class="info-box-number">0</span>
+                        <div class="card-body">
+                            <canvas id="donutChartSiswa" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
-                        <!-- /.info-box-content -->
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
+                <div class="col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Jumlah siswa sesuai jurusan</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="donutChartGuru" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
 
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
-                <!-- /.col -->
-                <div class="col-12 col-sm-4 col-md-4">
-                    <div class="info-box bg-secondary mb-3">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Jurusan MM</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
             </div>
-
-            <!-- Data -->
-            <div class="row">
-                <div class="col-12 col-sm-3 col-md-3">
-                    <div class="info-box bg-warning">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Jurusan TKJ</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-3 col-md-3">
-                    <div class="info-box bg-danger mb-3">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Jurusan DKV</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
-                <!-- /.col -->
-                <div class="col-12 col-sm-3 col-md-3">
-                    <div class="info-box bg-gradient-maroon mb-3">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Jurusan RPL</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-
-                <!-- /.col -->
-                <div class="col-12 col-sm-3 col-md-3">
-                    <div class="info-box bg-gradient-gray mb-3">
-                        <div class="info-box-content">
-                            <span class="info-box-text">Jurusan PSPT</span>
-                            <span class="info-box-number">0</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-            </div>
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
 
-        <div class="jumbotron bg-gradient-blue mt-2">
-            <h1>You are login for <?= $username ?></h1>
-            <h4>Welcome To Application System Information School</h4>
-        </div>
     </div>
 </div>

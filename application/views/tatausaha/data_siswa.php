@@ -13,7 +13,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item text-danger" href="<?= site_url('tatausaha/print_data_siswa_pdf') ?>" target="blank">PDF</a>
-                    <a class="dropdown-item text-success" href="#">EXCEL</a>
+                    <a class="dropdown-item text-success" href="<?= site_url('tatausaha/print_data_siswa_excel') ?>" target="blank">EXCEL</a>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                             <h5>Import data</h5>
                         </div>
                         <div class="card-body">
-                            <table id="example2" class="table table-responsive-lg table-borderless table-striped table-hover">
+                            <table id="example2" class="table table-borderless table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>NISN</th>

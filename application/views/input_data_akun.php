@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="col-sm-12">
                 <h1 class="m-0">Input Data</h1>
-                <div class="mt-1 mb-1">
+                <div class="mt-2 mb-0">
                     <?= $this->session->flashdata('massage'); ?>
                 </div>
             </div>
@@ -13,7 +13,7 @@
     </div>
     <!-- /.content-header -->
     <!-- Main content -->
-    <div class="content">
+    <div class="content mt-0">
         <div class="container-fluid">
             <!-- Data -->
             <!-- Horizontal Form -->
@@ -28,37 +28,37 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Full Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="...">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Isikan Nama Lengkap" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="...">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Isikan Username" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="...">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Isikan Email" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="password" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="...">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Isikan Password" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="password2" class="col-sm-2 col-form-label">Repeat Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="password2" name="password2" placeholder="...">
+                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Ulangi Password" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="unit" class="col-sm-2 col-form-label">Unit</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="role_id" id="Role">
+                                <select class="form-control" name="role_id" id="Role" required>
                                     <option value="">Pilih Unit</option>
                                     <option value="9">Data Center</option>
                                     <option value="1">Tata Usaha SMP</option>

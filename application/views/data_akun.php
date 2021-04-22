@@ -21,7 +21,7 @@
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered table-striped table-responsive-lg">
                                 <thead lass="bg-primary">
                                     <tr>
                                         <th>No</th>
@@ -160,7 +160,7 @@
                                                 <i class="fas fa-exclamation text-muted"></i>
                                             </span>
                                         </div>
-                                        <select class="form-control border-left-0 border-md" name="active" id="Active" aria-placeholder="Set Active">
+                                        <select class="form-control border-left-0 border-md" name="active" id="active" aria-placeholder="Set Active">
                                             <option value="">...</option>
                                             <option value="0">Not Active</option>
                                             <option value="1">Active</option>

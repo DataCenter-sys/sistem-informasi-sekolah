@@ -2,6 +2,11 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Helper;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
 class TataUsaha extends CI_Controller
 {
@@ -11,6 +16,7 @@ class TataUsaha extends CI_Controller
         parent::__construct();
         $this->load->model('Data', 'data');
         $this->load->model('User_Model', 'ud');
+        $this->load->model('Tu_Model', 'tu_model');
         $username = $this->session->userdata('username');
         if (empty($username)) {
             redirect('auth');
@@ -109,11 +115,23 @@ class TataUsaha extends CI_Controller
     */
     public function dashboard_smk()
     {
+
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
         $data['username'] = $this->session->userdata('username');
+        $data['mm'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'MM');
+        $data['rpl'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'RPL');
+        $data['tkj'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'TKJ');
+        $data['pspt'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'PSPT');
+        $data['dkv'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'DKV');
+        $data['otkp'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'OTKP');
+        $data['akl'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'AKL');
+        $data['pns'] = $this->tu_model->counting_class('tb_data_guru', 'status_kepegawaian', 'GTY/PTY');
+        $data['gty'] = $this->tu_model->counting_class('tb_data_guru', 'status_kepegawaian', 'PNS');
+        $data['honor'] = $this->tu_model->counting_class('tb_data_guru', 'status_kepegawaian', 'Guru Honor Sekolah');
+
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/dashboard', $data);
-        $this->load->view('template/template_footer');
+        $this->load->view('template/template_footer', $data);
     }
 
     public function input_tagihan_smk()
@@ -260,6 +278,22 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_footer');
     }
 
+    public function print_history_pembayaran_pdf($nisn)
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'default_font_size' => 8
+        ]);
+        $mpdf->debug = true;
+        $data['view'] = $this->db->get_where('tb_pembayaran', ['nisn' => $nisn])->result_array();
+        $html = $this->load->view('tatausaha/print_history', $data, true);
+        $mpdf->WriteHtml($html);
+        $mpdf->Output('Cetak-data-pembayaran.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+    }
+
+    public function print_history_pembayaran_excel($nisn)
+    {
+    }
+
     public function data_siswa_kelas_x()
     {
         $data['get_data'] = $this->db->get('tb_data_siswa')->result_array();
@@ -289,6 +323,79 @@ class TataUsaha extends CI_Controller
         $html = $this->load->view('tatausaha/print', $data, true);
         $mpdf->WriteHtml($html);
         $mpdf->Output('Cetak-data-siswa.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+    }
+
+    public function print_data_siswa_excel()
+    {
+        $i = 6; //Row 6
+        $no = 1;
+        $data = $this->db->get('tb_siswa')->result_array();
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->getProperties()->setCreator('M Ade Maulana')
+            ->setTitle('Office 2007 XLSX Test Document')
+            ->setSubject('Office 2007 XLSX Test Document')
+            ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+            ->setKeywords('office 2007 openxml php')
+            ->setCategory('Test result file');
+        $timezone = date_create(null, timezone_open("Asia/Bangkok"));
+        $tz = date_timezone_get($timezone);
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'Data Pembayaran')
+            ->setCellValue('A2', 'Laporan Pembayaran Siswa')
+            ->setCellValue('A4', 'Waktu Unduh : ' . date($tz, 'd-F-Y h:i:s A'))
+            ->setCellValue('A5', 'No')
+            ->setCellValue('B5', 'Nisn')
+            ->setCellValue('C5', 'Nik')
+            ->setCellValue('D5', 'Nama')
+            ->setCellValue('E5', 'Kelas')
+            ->setCellValue('F5', 'Jurusan')
+            ->setCellValue('G5', 'Tempat Lahir')
+            ->setCellValue('H5', 'Tanggal Lahir')
+            ->setCellValue('I5', 'Status Siswa');
+        foreach ($data as $dt) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $i, $no++)
+                ->setCellValue('B' . $i, $dt['nisn'])
+                ->setCellValue('C' . $i, $dt['nik'])
+                ->setCellValue('D' . $i, $dt['nama'])
+                ->setCellValue('E' . $i, $dt['kelas'])
+                ->setCellValue('F' . $i, $dt['jurusan'])
+                ->setCellValue('G' . $i, $dt['tempat_lahir'])
+                ->setCellValue('H' . $i, $dt['tanggal_lahir'])
+                ->setCellValue('I' . $i, $dt['status']);
+        }
+
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['argb' => 'FF000000'],
+                ],
+            ],
+            'alignment' => [
+                'horizontal' => Alignment::HORIZONTAL_LEFT
+            ]
+        ];
+        $r = 5;
+        $spreadsheet->getActiveSheet()->getStyle('A' . $r++ . ':I' . $r++)->applyFromArray($styleArray);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+        $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+
+        $spreadsheet->getActiveSheet()->setTitle('Data Siswa' . date('d-m-Y H'));
+        $spreadsheet->setActiveSheetIndex(0);
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="Data Siswa.xlsx"');
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $writer->save('php://output');
+        exit;
     }
 
     public function data_siswa_kelas_xii()

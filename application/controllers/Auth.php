@@ -97,6 +97,17 @@ class Auth extends CI_Controller
                 );
                 redirect('auth');
             }
+        } else {
+            $this->session->set_flashdata(
+                'massage',
+                '<div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    Username dan Password Tidak Di Temukan 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>'
+            );
+            redirect('auth');
         }
     }
 

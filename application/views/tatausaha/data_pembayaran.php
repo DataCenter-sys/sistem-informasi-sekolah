@@ -23,8 +23,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <table id="example3" class="table table-bordered table-striped">
-                                        <thead class="bg-dark">
+                                    <table id="example3" class="table table-bordered table-striped table-hover">
+                                        <thead class="bg-dark" style="font-size: 14px">
                                             <tr>
                                                 <th>No</th>
                                                 <th>NISN</th>
@@ -32,9 +32,10 @@
                                                 <th>kelas</th>
                                                 <th>Jurusan</th>
                                                 <th>Aksi</th>
+                                                <th>Cetak</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="font-size: 14px">
                                             <?php
                                             $no = 1;
                                             foreach ($get_data_siswa as $gds) { ?>
@@ -47,6 +48,10 @@
                                                     <td class="text-center">
                                                         <a href="#" class="btn btn-outline-primary btn-sm" id="kategori" data-toggle="modal" data-target="#bayarTagihan<?= $gds['kelas']; ?>">Bayar</i></a>
                                                         <a href="<?= site_url('tatausaha/history/' . $gds['nisn']) ?>" class="btn btn-outline-success btn-sm">Lihat</i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?= site_url('tatausaha/print_history_pembayaran_pdf/' . $gds['nisn']) ?>" class="btn btn-outline-danger btn-sm" target="blank">PDF</a>
+                                                        <a href="#" class="btn btn-outline-success btn-sm" target="blank">Excel</a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
