@@ -74,6 +74,7 @@ class Auth extends CI_Controller
                         redirect('auth');
                     }
                 } else {
+                    var_dump($login);
                     $this->session->set_flashdata(
                         'massage',
                         '<div class="alert alert-danger alert-dismissable fade show" role="alert">
@@ -86,6 +87,7 @@ class Auth extends CI_Controller
                     redirect('auth');
                 }
             } else {
+                var_dump($login);
                 $this->session->set_flashdata(
                     'massage',
                     '<div class="alert alert-danger alert-dismissable fade show" role="alert">
@@ -98,6 +100,7 @@ class Auth extends CI_Controller
                 redirect('auth');
             }
         } else {
+            var_dump($login);
             $this->session->set_flashdata(
                 'massage',
                 '<div class="alert alert-danger alert-dismissable fade show" role="alert">

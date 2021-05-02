@@ -70,10 +70,15 @@
                     </div>
                     <button class="btn btn-md btn-outline-primary" type="submit">Login Now</button>
                 </form>
-                <div class="mt-4">
-                    <p>Belum ada akun ?
-                        <a href="<?= site_url('register') ?>">Register</a>
-                    </p>
+                <div class="row mt-4">
+                    <div class="col-sm-6">
+                        <p>Belum ada akun ?
+                            <a href="<?= site_url('register') ?>">Register</a>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Klik <a href="<?= site_url('welcome') ?>" target="blank">disini</a> untuk melihat dokumentasi </p>
+                    </div>
                 </div>
 
             </div>

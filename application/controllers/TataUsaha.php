@@ -18,8 +18,13 @@ class TataUsaha extends CI_Controller
         $this->load->model('User_Model', 'ud');
         $this->load->model('Tu_Model', 'tu_model');
         $username = $this->session->userdata('username');
+        $role = $this->session->userdata('role_id');
         if (empty($username)) {
             redirect('auth');
+        }
+
+        if (!$role == 3) {
+            $this->load->view('auth');
         }
     }
 
@@ -115,7 +120,7 @@ class TataUsaha extends CI_Controller
     */
     public function dashboard_smk()
     {
-
+        $role = $this->session->userdata('role_id');
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
         $data['username'] = $this->session->userdata('username');
         $data['mm'] = $this->tu_model->counting_class('tb_siswa', 'jurusan', 'MM');
@@ -128,10 +133,16 @@ class TataUsaha extends CI_Controller
         $data['pns'] = $this->tu_model->counting_class('tb_data_guru', 'status_kepegawaian', 'GTY/PTY');
         $data['gty'] = $this->tu_model->counting_class('tb_data_guru', 'status_kepegawaian', 'PNS');
         $data['honor'] = $this->tu_model->counting_class('tb_data_guru', 'status_kepegawaian', 'Guru Honor Sekolah');
-
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/dashboard', $data);
         $this->load->view('template/template_footer', $data);
+        // if ($role == 3) {
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/dashboard', $data);
+        //     $this->load->view('template/template_footer', $data);
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function input_tagihan_smk()
@@ -171,7 +182,7 @@ class TataUsaha extends CI_Controller
 
     public function data_tagihan_smk()
     {
-
+        // $role = $this->session->userdata('role_id');
         // $data['get_data'] = $this->ud->tagihan();
         $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
         $data['username'] = $this->session->userdata('username');
@@ -194,10 +205,37 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_tagihan', $data);
         $this->load->view('template/template_footer');
+        // if ($role == 3) {
+        //     // $data['get_data'] = $this->ud->tagihan();
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     function acak($length)
+        //     {
+        //         $string = '';
+        //         $character = array_merge(range(
+        //             '0',
+        //             '9'
+        //         ));
+        //         $max = count($character) - 1;
+        //         for ($i = 0; $i < $length; $i++) {
+        //             $random = mt_rand(0, $max);
+        //             $string .= $character[$random];
+        //         }
+        //         return $string;
+        //     }
+        //     $data['no_acak'] = acak(10);
+        //     $data['get_data'] = $this->db->get('tb_tagihan')->result_array();
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/data_tagihan', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function data_pembayaran_smk()
     {
+        // $role = $this->session->userdata('role_id');
         function random($length)
         {
             $string = '';
@@ -221,6 +259,33 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_pembayaran', $data);
         $this->load->view('template/template_footer');
+        // if ($role == 3) {
+        //     function random($length)
+        //     {
+        //         $string = '';
+        //         $character = array_merge(range(
+        //             '0',
+        //             '9'
+        //         ));
+        //         $max = count($character) - 1;
+        //         for ($i = 0; $i < $length; $i++) {
+        //             $random = mt_rand(0, $max);
+        //             $string .= $character[$random];
+        //         }
+        //         return $string;
+        //     }
+
+        //     $data['get_data_siswa'] = $this->db->get('tb_siswa')->result_array();
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     $data['join'] = $this->data->join();
+        //     $data['random'] = random(10);
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/data_pembayaran', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function data_tunggakan_smk()
@@ -230,6 +295,7 @@ class TataUsaha extends CI_Controller
 
     public function insert_payment()
     {
+        // $role = $this->session->userdata('role_id');
         $nowDate = date("d M Y");
         $data = [
             'nisn' => htmlspecialchars($this->input->post('nisn')),
@@ -266,6 +332,46 @@ class TataUsaha extends CI_Controller
             );
             redirect('tatausaha/data_pembayaran_smk');
         }
+        // if ($role == 3) {
+        //     $nowDate = date("d M Y");
+        //     $data = [
+        //         'nisn' => htmlspecialchars($this->input->post('nisn')),
+        //         'nama' => htmlspecialchars($this->input->post('nama')),
+        //         'kelas' => htmlspecialchars($this->input->post('kelas')),
+        //         'no_pembayaran' => htmlspecialchars($this->input->post('no_pembayaran')),
+        //         'jenis_pembayaran' => htmlspecialchars($this->input->post('jenis_pembayaran')),
+        //         'jumlah_pembayaran' => htmlspecialchars($this->input->post('nominal_pembayaran')),
+        //         'tanggal_pembayaran' => $nowDate,
+        //         'status_pembayaran' => 'Lunas'
+        //     ];
+
+        //     $insert = $this->db->insert('tb_pembayaran', $data);
+        //     if ($insert) {
+        //         $this->session->set_flashdata(
+        //             'massage',
+        //             '<div class="alert alert-success alert-dismissable fade show" role="alert">
+        //         Sukses Melakukan Pembayaran
+        //         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //             <span aria-hidden="true">&times;</span>
+        //         </button>
+        //     </div>'
+        //         );
+        //         redirect('tatausaha/data_pembayaran_smk');
+        //     } else {
+        //         $this->session->set_flashdata(
+        //             'massage',
+        //             '<div class="alert alert-danger alert-dismissable fade show" role="alert">
+        //         Gagal Melakukan Pembayaran
+        //         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //             <span aria-hidden="true">&times;</span>
+        //         </button>
+        //     </div>'
+        //         );
+        //         redirect('tatausaha/data_pembayaran_smk');
+        //     }
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function history($nisn)
@@ -276,6 +382,17 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/history', $data);
         $this->load->view('template/template_footer');
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $data['view'] = $this->db->get_where('tb_pembayaran', ['nisn' => $nisn])->result_array();
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/history', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function print_history_pembayaran_pdf($nisn)
@@ -288,6 +405,18 @@ class TataUsaha extends CI_Controller
         $html = $this->load->view('tatausaha/print_history', $data, true);
         $mpdf->WriteHtml($html);
         $mpdf->Output('Cetak-data-pembayaran.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $mpdf = new \Mpdf\Mpdf([
+        //         'default_font_size' => 8
+        //     ]);
+        //     $mpdf->debug = true;
+        //     $data['view'] = $this->db->get_where('tb_pembayaran', ['nisn' => $nisn])->result_array();
+        //     $html = $this->load->view('tatausaha/print_history', $data, true);
+        //     $mpdf->WriteHtml($html);
+        //     $mpdf->Output('Cetak-data-pembayaran.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+        // } else {
+        // }
     }
 
     public function print_history_pembayaran_excel($nisn)
@@ -302,6 +431,17 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_siswa_kelas_X', $data);
         $this->load->view('template/template_footer');
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $data['get_data'] = $this->db->get('tb_data_siswa')->result_array();
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/data_siswa_kelas_X', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function data_siswa()
@@ -313,6 +453,18 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_siswa', $data);
         $this->load->view('template/template_footer');
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['get_data'] = $this->db->get('tb_data_siswa')->result_array();
+        //     $data['get_data_siswa'] = $this->db->get('tb_siswa')->result_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/data_siswa', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function print_data_siswa_pdf()
@@ -323,6 +475,17 @@ class TataUsaha extends CI_Controller
         $html = $this->load->view('tatausaha/print', $data, true);
         $mpdf->WriteHtml($html);
         $mpdf->Output('Cetak-data-siswa.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $mpdf = new \Mpdf\Mpdf();
+        //     $mpdf->debug = true;
+        //     $data['get_data_siswa'] = $this->db->get('tb_siswa')->result_array();
+        //     $html = $this->load->view('tatausaha/print', $data, true);
+        //     $mpdf->WriteHtml($html);
+        //     $mpdf->Output('Cetak-data-siswa.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function print_data_siswa_excel()
@@ -337,7 +500,7 @@ class TataUsaha extends CI_Controller
             ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
             ->setKeywords('office 2007 openxml php')
             ->setCategory('Test result file');
-        $timezone = date_create(null, timezone_open("Asia/Bangkok"));
+        $timezone = date_create(timezone_open("Asia/Bangkok"));
         $tz = date_timezone_get($timezone);
         $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1', 'Data Pembayaran')
@@ -396,6 +559,80 @@ class TataUsaha extends CI_Controller
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
         $writer->save('php://output');
         exit;
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $i = 6; //Row 6
+        //     $no = 1;
+        //     $data = $this->db->get('tb_siswa')->result_array();
+        //     $spreadsheet = new Spreadsheet();
+        //     $spreadsheet->getProperties()->setCreator('M Ade Maulana')
+        //         ->setTitle('Office 2007 XLSX Test Document')
+        //         ->setSubject('Office 2007 XLSX Test Document')
+        //         ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+        //         ->setKeywords('office 2007 openxml php')
+        //         ->setCategory('Test result file');
+        //     $timezone = date_create(null, timezone_open("Asia/Bangkok"));
+        //     $tz = date_timezone_get($timezone);
+        //     $spreadsheet->setActiveSheetIndex(0)
+        //         ->setCellValue('A1', 'Data Pembayaran')
+        //         ->setCellValue('A2', 'Laporan Pembayaran Siswa')
+        //         ->setCellValue('A4', 'Waktu Unduh : ' . date($tz, 'd-F-Y h:i:s A'))
+        //         ->setCellValue('A5', 'No')
+        //         ->setCellValue('B5', 'Nisn')
+        //         ->setCellValue('C5', 'Nik')
+        //         ->setCellValue('D5', 'Nama')
+        //         ->setCellValue('E5', 'Kelas')
+        //         ->setCellValue('F5', 'Jurusan')
+        //         ->setCellValue('G5', 'Tempat Lahir')
+        //         ->setCellValue('H5', 'Tanggal Lahir')
+        //         ->setCellValue('I5', 'Status Siswa');
+        //     foreach ($data as $dt) {
+        //         $spreadsheet->setActiveSheetIndex(0)
+        //             ->setCellValue('A' . $i, $no++)
+        //             ->setCellValue('B' . $i, $dt['nisn'])
+        //             ->setCellValue('C' . $i, $dt['nik'])
+        //             ->setCellValue('D' . $i, $dt['nama'])
+        //             ->setCellValue('E' . $i, $dt['kelas'])
+        //             ->setCellValue('F' . $i, $dt['jurusan'])
+        //             ->setCellValue('G' . $i, $dt['tempat_lahir'])
+        //             ->setCellValue('H' . $i, $dt['tanggal_lahir'])
+        //             ->setCellValue('I' . $i, $dt['status']);
+        //     }
+
+        //     $styleArray = [
+        //         'borders' => [
+        //             'allBorders' => [
+        //                 'borderStyle' => Border::BORDER_THIN,
+        //                 'color' => ['argb' => 'FF000000'],
+        //             ],
+        //         ],
+        //         'alignment' => [
+        //             'horizontal' => Alignment::HORIZONTAL_LEFT
+        //         ]
+        //     ];
+        //     $r = 5;
+        //     $spreadsheet->getActiveSheet()->getStyle('A' . $r++ . ':I' . $r++)->applyFromArray($styleArray);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+        //     $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+
+        //     $spreadsheet->getActiveSheet()->setTitle('Data Siswa' . date('d-m-Y H'));
+        //     $spreadsheet->setActiveSheetIndex(0);
+        //     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        //     header('Content-Disposition: attachment;filename="Data Siswa.xlsx"');
+        //     header('Cache-Control: max-age=0');
+        //     header('Cache-Control: max-age=1');
+        //     $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        //     $writer->save('php://output');
+        //     exit;
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function data_siswa_kelas_xii()
@@ -405,6 +642,16 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_siswa_kelas_XII', $data);
         $this->load->view('template/template_footer');
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/data_siswa_kelas_XII', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     public function data_alumni()
@@ -420,6 +667,17 @@ class TataUsaha extends CI_Controller
         $this->load->view('template/template_header', $data);
         $this->load->view('tatausaha/data_guru', $data);
         $this->load->view('template/template_footer');
+        // $role = $this->session->userdata('role_id');
+        // if ($role == 3) {
+        //     $data['get_data'] = $this->db->get('tb_data_guru')->result_array();
+        //     $data['role'] = $this->db->get_where('tb_user', ['role_id' => 3])->row_array();
+        //     $data['username'] = $this->session->userdata('username');
+        //     $this->load->view('template/template_header', $data);
+        //     $this->load->view('tatausaha/data_guru', $data);
+        //     $this->load->view('template/template_footer');
+        // } else {
+        //     $this->load->view('errors/html/error_404.php');
+        // }
     }
 
     /*
